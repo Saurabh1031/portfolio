@@ -4,7 +4,7 @@ import { Image, Navbar, NavbarItem, NavbarRight } from '../portfolio/portfolio-c
 import logo from "../../icons/logo.svg";
 import { useNavigate } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
-import { Card, CardContainer, CardFooter, Container, DeleteImg, FooterItem, Heading, ImageCard, Img } from './my-projects-components';
+import { Card, CardContainer, CardFooter, Container, DeleteImg, FooterItem, Heading, ImageCard, Img, Title, WhiteCircle } from './my-projects-components';
 import 'reactjs-popup/dist/index.css';
 import { myProjects } from '../../data/projects';
 import deleteIcon from "../../icons/delete.svg";
@@ -102,7 +102,7 @@ export default function Projects() {
             setError("Incomplete details or incorrect password!");
         }
     }
-    // console.log("projects: ", projects);
+    console.log("projects: ", projects);
     return (
         <>
             <Navbar>
@@ -119,23 +119,28 @@ export default function Projects() {
             <Container>
                 <Heading>MY PROJECTS</Heading>
                 <CardContainer>
-                    {loader ? <h1>Fetching Projects...</h1>
+                    {loader ? <h1 style={{ color: "#fff" }}>Fetching Projects...</h1>
                         : projects.length > 0 ? projects.map((project: any) => (
-                            <Card key={project.id}>
-                                <DeleteImg onClick={() => {
-                                    setDeleteProjectModal(true);
-                                    setProjectId(project.id);
-                                    //deleteProjectFromDB(project.id)
-                                }} src={deleteIcon} alt="delete" />
-                                <ImageCard>
-                                    <Img src={project.imgSrc} alt="image" />
-                                </ImageCard>
-                                <CardFooter>
-                                    <FooterItem onClick={() => window.open(project.sourceCode)}>Source Code</FooterItem>
-                                    <FooterItem onClick={() => window.open(project.deployedLink)}>Live</FooterItem>
-                                </CardFooter>
-                            </Card>
-                        )) : <h2>No Projects found!</h2>}
+                            <div>
+                                <Card key={project.id}>
+                                    <WhiteCircle>
+                                        <DeleteImg onClick={() => {
+                                            setDeleteProjectModal(true);
+                                            setProjectId(project.id);
+                                            //deleteProjectFromDB(project.id)
+                                        }} src={deleteIcon} alt="delete" />
+                                    </WhiteCircle>
+                                    <ImageCard>
+                                        <Img src={project.imgSrc} alt="image" />
+                                    </ImageCard>
+                                    <CardFooter>
+                                        <FooterItem onClick={() => window.open(project.sourceCode)}>Source</FooterItem>
+                                        <FooterItem onClick={() => window.open(project.deployedLink)}>Live</FooterItem>
+                                    </CardFooter>
+                                </Card>
+                                <Title>{project.title || ""}</Title>
+                            </div>
+                        )) : <h2 style={{ color: "#fff" }}>No Projects found!</h2>}
 
                 </CardContainer>
             </Container>
@@ -173,7 +178,7 @@ export default function Projects() {
             {/* Delete Project Modal */}
             <Modal
                 show={deleteProjectModal}
-                onHide={() => { setDeleteProjectModal(false); setProjectId(""); setPassword(""); setError("");}}
+                onHide={() => { setDeleteProjectModal(false); setProjectId(""); setPassword(""); setError(""); }}
                 backdrop="static"
                 keyboard={false}
             >

@@ -44,6 +44,7 @@ export const MainContainer = Styled.div`
     align-items: center;
 `;
 export const Image = Styled.img`
+    margin: 17px 0 0 5px;
     height: 71px;
     width: 73px;
 `;
@@ -53,24 +54,19 @@ export const BoyImagelogo = Styled.img`
     width: auto;
 `;
 export const IntroContainer = Styled.div`
-    width: 375px;
-    flex-wrap: wrap;
-    display: flex;
-    @media (max-width: 420px) {
-        width: 90%;
-    }
 `;
 export const Introduction = Styled.div`
-font-family: 'Roboto', sans-serif;
-color: #fff;
-overflow: hidden; /* Ensures the content is not revealed until the animation */
-border-right: .15em solid orange; /* The typwriter cursor */
-white-space: nowrap; /* Keeps the content on a single line */
-margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-letter-spacing: .15em; /* Adjust as needed */
-animation: 
-  typing 3.5s steps(40, end),
-  blink-caret .75s step-end infinite;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-size: 32px;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    //border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    @media (max-width: 490px) {
+        font-size: 16px;
+    }
 `;
 export const Footer = Styled.div`
     height: 13%;

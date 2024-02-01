@@ -10,7 +10,7 @@ export const Heading = Styled.div`
     font-size: 30px;
     font-weight: 500;
     font-family: 'Nunito Sans';
-    color: mediumpurple;
+    color: rgb(246,145,30);
 `;
 export const CardContainer = Styled.div`
     display: flex;
@@ -20,11 +20,11 @@ export const CardContainer = Styled.div`
 `;
 export const Card = Styled.div`
     display: flex;
-    background: mediumpurple;
+    background-color: rgb(246,145,30);
     height: 250px;
     width: 277px;
     flex-direction: column;
-    border: 3px solid black;
+    //border: 3px solid black;
     border-radius: 15px;
     //margin-top: 20px;
     overflow: hidden;
@@ -32,7 +32,7 @@ export const Card = Styled.div`
 `;
 export const ImageCard = Styled.div`
 height: 75%;
-border-bottom: 3px solid black;
+//border-bottom: 3px solid black;
 `;
 export const Img = Styled.img`
 height: 100%;
@@ -42,22 +42,49 @@ export const CardFooter = Styled.div`
 height: 25%;
 display: flex;
 width: 100%;
+//border: 3px solid black;
 `;
 export const FooterItem = Styled.div`
 width: 50%;
 justify-content: center;
+font-weight: 700;
 display: flex;
 align-items: center;
+font-family: 'Nunito Sans';
 color: white;
-border: 2px solid black;
+//border: 2px solid black;
 text-align: center;
 cursor: pointer;
+&:hover {
+    color: rgb(246,145,30);
+    background: #fff;
+}
 `;
 export const DeleteImg = Styled.img`
-position: absolute;
-right: 2px;
-top: 2px;
-height: 26px;
-width: auto;
-cursor: pointer;
+    height: 24px;
+    width: auto;
+`;
+export const WhiteCircle = Styled.div`
+    display: flex;
+    border: 3px solid #000;
+    justify-content: center;
+    align-items: center;    
+    background-color: #fff;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    right: 2px;
+    top: 2px;
+`;
+export const Title = Styled.div`
+    justify-content: center;
+    display: flex;
+    align-items: center;
+   //height: 77px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Nunito Sans';
+    color: rgb(246,145,30);
 `;
