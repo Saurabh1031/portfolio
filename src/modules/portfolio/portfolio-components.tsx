@@ -33,7 +33,7 @@ export const NavbarItem = Styled.div`
 `;
 export const MainContainer = Styled.div`
     display: flex;
-    height: 75%;
+    // height: 75%;
     //background: #fff;
     align-items: center;
     justify-content: center;

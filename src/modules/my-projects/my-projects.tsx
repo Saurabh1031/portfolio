@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { Image, Navbar, NavbarItem, NavbarRight } from '../portfolio/portfolio-components'
 import logo from "../../icons/logo.svg";
 import { useNavigate } from 'react-router-dom';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Card, CardContainer, CardFooter, Container, DeleteImg, FooterItem, Heading, ImageCard, Img, Title, WhiteCircle } from './my-projects-components';
 import 'reactjs-popup/dist/index.css';
-import { myProjects } from '../../data/projects';
 import deleteIcon from "../../icons/delete.svg";
 import db from '../../firebase';
 import { collection, addDoc, getDocs, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import AlternateEmailTwoToneIcon from '@mui/icons-material/AlternateEmailTwoTone';
+import CardContainerComponent from '../../components/card/card-container';
 export default function Projects() {
     const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
@@ -102,46 +104,66 @@ export default function Projects() {
             setError("Incomplete details or incorrect password!");
         }
     }
-    console.log("projects: ", projects);
     return (
         <>
-            <Navbar>
-                <Image src={logo} alt="logo" />
-                <NavbarRight>
-                    <NavbarItem onClick={() => setShowAddProjectModal(true)}>
-                        Add Project
-                    </NavbarItem>
-                    <NavbarItem onClick={() => { navigate("/") }}>
-                        Home Page
-                    </NavbarItem>
-                </NavbarRight>
-            </Navbar>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static" sx={{ backgroundColor: "rgb(90, 90, 90)" }}>
+                    <Toolbar>
+                        <IconButton
+                            size="md"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 0 }}
+                        >
+                            <AlternateEmailTwoToneIcon />
+                        </IconButton>
+                        <Typography variant="h5" fontWeight={600} component="div" color="#fff" sx={{ flexGrow: 1 }}>
+                            Portfolio
+                        </Typography>
+                        <Button sx={{
+                            color: "rgb(246, 145, 30)",
+                            '&:hover': {
+                                backgroundColor: 'rgb(246, 145, 30)', color: "#fff"
+                            },
+                        }} onClick={() => setShowAddProjectModal(true)}>Add Project</Button>
+                        <Button sx={{
+                            color: "rgb(246, 145, 30)",
+                            '&:hover': {
+                                backgroundColor: 'rgb(246, 145, 30)', color: "#fff"
+                            },
+                        }} onClick={() => { navigate("/") }}>Home</Button>
+                    </Toolbar>
+                </AppBar>
+            </Box >
             <Container>
-                <Heading>MY PROJECTS</Heading>
+                <Typography
+                    sx={{
+                        justifyContent: "center",
+                        display: "flex",
+                        alignItems: "center",
+                        height: "20%"
+                    }}
+                    style={{ color: 'rgb(246,145,30' }}
+                    fontSize={40}
+                    fontWeight={500}
+                >
+                    MY PROJECTS
+                </Typography>
                 <CardContainer>
-                    {loader ? <h1 style={{ color: "#fff" }}>Fetching Projects...</h1>
-                        : projects.length > 0 ? projects.map((project: any) => (
-                            <div>
-                                <Card key={project.id}>
-                                    <WhiteCircle>
-                                        <DeleteImg onClick={() => {
-                                            setDeleteProjectModal(true);
-                                            setProjectId(project.id);
-                                            //deleteProjectFromDB(project.id)
-                                        }} src={deleteIcon} alt="delete" />
-                                    </WhiteCircle>
-                                    <ImageCard>
-                                        <Img src={project.imgSrc} alt="image" />
-                                    </ImageCard>
-                                    <CardFooter>
-                                        <FooterItem onClick={() => window.open(project.sourceCode)}>Source</FooterItem>
-                                        <FooterItem onClick={() => window.open(project.deployedLink)}>Live</FooterItem>
-                                    </CardFooter>
-                                </Card>
-                                <Title>{project.title || ""}</Title>
-                            </div>
-                        )) : <h2 style={{ color: "#fff" }}>No Projects found!</h2>}
-
+                    {loader ? (
+                        <Typography fontSize={30} style={{ color: "#fff" }}>
+                            Fetching Projects...
+                        </Typography>
+                    ) : projects.length > 0 ? (
+                        projects.map((project: any) => (
+                            <CardContainerComponent key={project.id} project={project} />
+                        ))
+                    ) : (
+                        <Typography fontSize={30} style={{ color: "#fff" }}>
+                            No Projects found!
+                        </Typography>
+                    )}
                 </CardContainer>
             </Container>
             {/* Add Project Modal */}
@@ -174,7 +196,6 @@ export default function Projects() {
                     <Button variant="primary" onClick={addProjectHandler}>ADD</Button>
                 </Modal.Footer>
             </Modal >
-
             {/* Delete Project Modal */}
             <Modal
                 show={deleteProjectModal}
