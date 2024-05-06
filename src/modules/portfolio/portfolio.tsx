@@ -1,7 +1,6 @@
 import React from 'react'
 import { BoyImagelogo, Footer, FooterItem, Image, IntroContainer, Introduction, MainContainer, Navbar, NavbarItem, NavbarRight } from './portfolio-components';
 import { useNavigate } from 'react-router-dom';
-import logo from "../../icons/logo.svg";
 import BoyImage from "../../icons/boy.svg";
 import LinkedIn from "../../icons/linkedin.svg";
 import github from "../../icons/github.svg";
@@ -23,7 +22,7 @@ export default function Portfolio() {
                             aria-label="menu"
                             sx={{ mr: 0 }}
                         >
-                            <AlternateEmailTwoToneIcon />
+                            <AlternateEmailTwoToneIcon style={{ color: 'rgb(239, 160, 13)' }} />
                         </IconButton>
                         <Typography variant="h5" fontWeight={600} component="div" color="#fff" sx={{ flexGrow: 1 }}>
                             Portfolio
@@ -34,12 +33,12 @@ export default function Portfolio() {
                                 backgroundColor: 'rgb(246, 145, 30)', color: "#fff"
                             },
                         }} onClick={() => navigate("/projects")}>My Projects</Button>
-                        <Button sx={{
+                        {/* <Button sx={{
                             color: "rgb(246, 145, 30)",
                             '&:hover': {
                                 backgroundColor: 'rgb(246, 145, 30)', color: "#fff"
                             },
-                        }}>Contact Us</Button>
+                        }}>Contact Me</Button> */}
                     </Toolbar>
                 </AppBar>
             </Box >
@@ -56,21 +55,25 @@ export default function Portfolio() {
                         <b style={{ color: "rgb(246,145,30)" }}>Hey there!</b> My name is Saurabh Tiwari. <br />
                         I'm a Javascript Developer.
                     </Typography>
+                    <br/>
+                    <Typography style={{ color: "#ffffff", textAlign: "center" }} fontSize={"150%"}>
+                        <b style={{ color: "rgb(246,145,30)" }}>Skills: </b> HTML5, CSS3, Javascript, React.js, Redux, Node.js, SQL, Git
+                    </Typography>
                 </IntroContainer>
-
+                <br/>
+                <Box sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "29px",
+                    width: "99vw",
+                    // position: "absolute",
+                    // bottom: "5px",
+                }}>
+                    <FooterItem src={LinkedIn} alt="linkedIn" onClick={() => window.open("https://www.linkedin.com/in/saurabh-tiwari-982418172/")} />
+                    <FooterItem style={{ height: "61px" }} src={github} alt="github" onClick={() => window.open("https://github.com/Saurabh1031")} />
+                </Box>
             </Container >
-            <Box sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "29px",
-                position: "absolute",
-                bottom: "5px",
-                width: "99vw",
-            }}>
-                <FooterItem src={LinkedIn} alt="linkedIn" onClick={() => window.open("https://www.linkedin.com/in/saurabh-tiwari-982418172/")} />
-                <FooterItem style={{ height: "61px" }} src={github} alt="github" onClick={() => window.open("https://github.com/Saurabh1031")} />
-            </Box>
         </>
     );
 }

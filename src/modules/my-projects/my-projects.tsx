@@ -116,7 +116,7 @@ export default function Projects() {
                             aria-label="menu"
                             sx={{ mr: 0 }}
                         >
-                            <AlternateEmailTwoToneIcon />
+                            <AlternateEmailTwoToneIcon style={{ color: 'rgb(239, 160, 13)' }} />
                         </IconButton>
                         <Typography variant="h5" fontWeight={600} component="div" color="#fff" sx={{ flexGrow: 1 }}>
                             Portfolio
@@ -148,7 +148,7 @@ export default function Projects() {
                     fontSize={40}
                     fontWeight={500}
                 >
-                    MY PROJECTS
+                    PROJECTS
                 </Typography>
                 <CardContainer>
                     {loader ? (
@@ -157,7 +157,7 @@ export default function Projects() {
                         </Typography>
                     ) : projects.length > 0 ? (
                         projects.map((project: any) => (
-                            <CardContainerComponent key={project.id} project={project} />
+                            <CardContainerComponent key={project.id} project={project} setDeleteProjectModal={setDeleteProjectModal} setProjectId={setProjectId} />
                         ))
                     ) : (
                         <Typography fontSize={30} style={{ color: "#fff" }}>

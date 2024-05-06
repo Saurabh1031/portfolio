@@ -50,7 +50,7 @@ export const Image = Styled.img`
 `;
 
 export const BoyImagelogo = Styled.img`
-    height: 261px;
+    height: 41vh;
     width: auto;
 `;
 export const IntroContainer = Styled.div`

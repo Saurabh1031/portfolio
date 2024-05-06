@@ -1,14 +1,39 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
+import { Button, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
 type ProjectType = {
+    id: string,
     title: string,
     imgSrc: string,
     sourceCode: string,
     deployedLink: string
 }
-export default function CardContainer({ project }: { project: ProjectType }) {
+export default function CardContainer({ project, setDeleteProjectModal, setProjectId }: { project: ProjectType, setDeleteProjectModal: any, setProjectId: any }) {
     return <Card sx={{ width: 300 }}>
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+        <IconButton
+            size="small"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{
+                width: "inherit",
+                justifyContent: "end"
+            }}
+            onClick={() => {
+                setDeleteProjectModal(true);
+                setProjectId(project.id);
+                //deleteProjectFromDB(project.id)
+            }}
+        >
+            <DeleteIcon style={{ color: 'rgb(239, 160, 13)' }} />
+        </IconButton>
+        <CardContent sx={{ padding: "0 16px" }}>
+            <Typography gutterBottom variant="h5" component="div" sx={{
+                maxWidth: '100%',
+                fontSize: '1.5rem',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap'
+            }}>
                 {project.title || ""}
             </Typography>
             <CardMedia
@@ -21,9 +46,9 @@ export default function CardContainer({ project }: { project: ProjectType }) {
                 species, ranging across all continents except Antarctica
             </Typography> */}
         </CardContent>
-        <CardActions>
-            <Button size="small" onClick={() => window.open(project.sourceCode)}>Source</Button>
-            <Button size="small" onClick={() => window.open(project.deployedLink)}>Live</Button>
+        <CardActions sx={{ padding: "3px 8px", justifyContent: "space-around" }}>
+            <Button style={{ color: 'rgb(239, 160, 13)' }} size="small" onClick={() => window.open(project.sourceCode)}>Source</Button>
+            <Button style={{ color: 'rgb(239, 160, 13)' }} size="small" onClick={() => window.open(project.deployedLink)}>Live</Button>
         </CardActions>
-    </Card>
+    </Card >
 }
