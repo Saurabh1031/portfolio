@@ -186,7 +186,7 @@ export default function Projects() {
                     <label name='image'>Display image URL</label> <br />
                     <input type='text' name="image" onChange={(e) => setImageLink(e.target.value)} /> <br />
                     <label name='password'>Password</label> <br />
-                    <input type='text' name="password" onChange={(e) => setPassword(e.target.value)} /> <br />
+                    <input type='password' name="password" onChange={(e) => setPassword(e.target.value)} /> <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
                 </Modal.Body>
                 <Modal.Footer>
@@ -209,7 +209,7 @@ export default function Projects() {
                 <Modal.Body>
                     Are you sure you want to delete this Project? <br />
                     <label name='password'>Password</label> <br />
-                    <input type='text' name="password" onChange={(e) => setPassword(e.target.value)} /> <br />
+                    <input type='password' name="password" onChange={(e) => setPassword(e.target.value)} /> <br />
                     {error && <div style={{ color: "red" }}>{error}</div>}
                 </Modal.Body>
                 <Modal.Footer>
